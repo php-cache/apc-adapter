@@ -26,7 +26,7 @@ class ApcCachePool extends AbstractCachePool
 
     protected function clearAllObjectsFromCache()
     {
-        return apc_clear_cache(apc_clear_cache('user'));
+        return apc_clear_cache('user');
     }
 
     protected function clearOneObjectFromCache($key)

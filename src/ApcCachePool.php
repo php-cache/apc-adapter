@@ -21,7 +21,10 @@ class ApcCachePool extends AbstractCachePool
 {
     protected function fetchObjectFromCache($key)
     {
-        return apc_fetch($key);
+        $success = false;
+        $data    = apc_fetch($key, $success);
+
+        return [$success, $data];
     }
 
     protected function clearAllObjectsFromCache()
@@ -38,6 +41,6 @@ class ApcCachePool extends AbstractCachePool
 
     protected function storeItemInCache($key, CacheItemInterface $item, $ttl)
     {
-        return apc_store($key, $item, $ttl);
+        return apc_store($key, $item->get(), $ttl);
     }
 }

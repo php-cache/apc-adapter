@@ -10,11 +10,6 @@ cache:
       - "$HOME/.composer/cache"
 
 before_install:
-    - |
-        git diff --name-only | grep -q '.' || {
-          echo "No change on this repo where made, stopping process."
-          exit
-        }
     - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d
     - ./build/php/7.0/Apc.sh
 
